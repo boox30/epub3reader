@@ -33,7 +33,6 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentTop="true"
 	        android:layout_toLeftOf="@+id/topRightFirstView"
-	        android:alpha="0.0"
 	        android:padding="@dimen/all_margin" />
 
 	    <Button
@@ -42,8 +41,7 @@
 	        android:layout_height="@dimen/horizontal_button_height"
 	        android:layout_alignBottom="@+id/firstViewport"
 	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentRight="true"
-	        android:alpha="0.0" />
+	        android:layout_alignParentRight="true" />
 
 	    <Button
 	        android:id="@+id/topRightFirstView"
@@ -78,8 +76,7 @@
 	        android:layout_alignLeft="@+id/topSecondView"
 	        android:layout_alignParentBottom="true"
 	        android:layout_alignParentRight="true"
-	        android:layout_margin="@dimen/all_margin"
-	        android:alpha="0.0" />
+	        android:layout_margin="@dimen/all_margin" />
 
 	    <Button
 	        android:id="@+id/topSecondView"
@@ -89,7 +86,6 @@
 	        android:layout_alignParentTop="true"
 	        android:layout_margin="@dimen/all_margin"
 	        android:layout_toLeftOf="@+id/topRightSecondView"
-	        android:alpha="0.0"
 	        android:padding="@dimen/all_margin" />
 
 	    <Button
