@@ -25,7 +25,6 @@ THE SOFTWARE.
 package it.angrydroids.epub3reader;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,6 +44,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebSettings.TextSize;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -102,6 +102,9 @@ public class EpubReaderMain extends Activity {
 		// enable JavaScript for cool things to happen!
 		view1.getSettings().setJavaScriptEnabled(true);
 		view2.getSettings().setJavaScriptEnabled(true);
+
+		view1.getSettings().setTextSize(TextSize.LARGEST);
+		view2.getSettings().setTextSize(TextSize.LARGEST);
 
 		// when the app starts, only one view is shown
 		updateView1(ViewStateEnum.books);
@@ -189,7 +192,8 @@ public class EpubReaderMain extends Activity {
 		});
 
 		view1.setWebViewClient(new WebViewClient() {
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			@Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				try {
 					updateView1(navigator.setView1(url));
 				} catch (Exception e) {
@@ -231,7 +235,8 @@ public class EpubReaderMain extends Activity {
 		});
 
 		view2.setWebViewClient(new WebViewClient() {
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			@Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				try {
 					updateView2(navigator.setView2(url));
 				} catch (Exception e) {
@@ -487,16 +492,16 @@ public class EpubReaderMain extends Activity {
 			return true;
 		case R.id.changeSize:
 			try {
-				DialogFragment newFragment = new SetPanelSize();
-				newFragment.show(getFragmentManager(), "");
+                // DialogFragment newFragment = new SetPanelSize();
+                // newFragment.show(getFragmentManager(), "");
 			} catch (Exception e) {
 				errorMessage(getString(R.string.error_cannotChangeSizes));
 			}
 			return true;
 		case R.id.Style: // work in progress...
 			try {
-				DialogFragment newFragment = new ChangeCSSMenu();
-				newFragment.show(getFragmentManager(), "");
+                // DialogFragment newFragment = new ChangeCSSMenu();
+                // newFragment.show(getFragmentManager(), "");
 			} catch (Exception e) {
 				errorMessage(getString(R.string.error_CannotChangeStyle));
 			}
@@ -545,17 +550,17 @@ public class EpubReaderMain extends Activity {
 	/*
 	 * protected void syncScroll(View v1, View v2, MotionEvent event) { int
 	 * action = MotionEventCompat.getActionMasked(event);
-	 * 
+	 *
 	 * switch (action) { case (MotionEvent.ACTION_DOWN): swipeOriginY =
 	 * event.getY(); swipeOriginX = event.getX(); break;
-	 * 
+	 *
 	 * case (MotionEvent.ACTION_UP): float endY = event.getY(); float endX =
 	 * event.getX(); float diffY = swipeOriginY - endY; float diffX =
 	 * swipeOriginX - endX; if (Math.abs(diffY) < Math.abs(diffX) ||
 	 * Math.abs(diffY) > 300) // solo // per // piccoli // scroll { }
-	 * 
+	 *
 	 * else { v2.scrollBy(0, (int) diffY); }
-	 * 
+	 *
 	 * break; } }
 	 */
 
@@ -573,9 +578,9 @@ public class EpubReaderMain extends Activity {
 			bundle.putString(getString(R.string.tome), which.toString());
 			bundle.putStringArray(getString(R.string.lang), languages);
 
-			LanguageChooser langChooser = new LanguageChooser();
-			langChooser.setArguments(bundle);
-			langChooser.show(getFragmentManager(), "");
+            // LanguageChooser langChooser = new LanguageChooser();
+            // langChooser.setArguments(bundle);
+            // langChooser.show(getFragmentManager(), "");
 		} else {
 			errorMessage(getString(R.string.error_noOtherLanguages));
 		}
